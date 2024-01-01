@@ -43,9 +43,53 @@ func typicode_posts(w http.ResponseWriter, req *http.Request) {
 
 }
 
+func mypost(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Read the request body
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Error reading request body", http.StatusInternalServerError)
+		return
+	}
+
+	// Set the Content-Type header to JSON
+	w.Header().Set("Content-Type", "application/json")
+
+	// Echo the received data back as the response
+	_, err = w.Write(body)
+	if err != nil {
+		http.Error(w, "Error writing response", http.StatusInternalServerError)
+		return
+	}
+
+	// // Print the received data to the console
+	// fmt.Println("Received data:", string(body))
+
+	// // Optionally, you can unmarshal the JSON and marshal it again to pretty print in console
+	// var data interface{}
+	// if err := json.Unmarshal(body, &data); err != nil {
+	// 	fmt.Println("Error unmarshaling JSON:", err)
+	// 	return
+	// }
+	// prettyJSON, err := json.MarshalIndent(data, "", "  ")
+	// if err != nil {
+	// 	fmt.Println("Error marshaling JSON:", err)
+	// 	return
+	// }
+	// fmt.Println("Received JSON:")
+	// fmt.Println(string(prettyJSON))
+}
+
+
+
 func main() {
 	http.HandleFunc("/hello", hello)
 
 	http.HandleFunc("/typicode_get_posts", typicode_posts)
+	http.HandleFunc("/post", mypost)
 	http.ListenAndServe(":3000", nil)
 }
