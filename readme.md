@@ -9,7 +9,9 @@ calling external /third party apis using httpclient
 ```
 
 # To run 
+```
 go run server.go
+```
 
 ```
 To do with gin framework 
