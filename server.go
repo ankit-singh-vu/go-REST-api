@@ -134,10 +134,25 @@ func mypost2(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// http://localhost:3000/hello
 	http.HandleFunc("/hello", hello)
 
+	// http://localhost:3000/typicode_get_posts
 	http.HandleFunc("/typicode_get_posts", typicode_posts)
+
+	/*
+		curl --location --request POST 'http://localhost:3000/post2' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+		"userId": 1,
+		"id": 1,
+		"title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+		"body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+		}'
+	*/
 	http.HandleFunc("/post", mypost)
+	
 	http.HandleFunc("/post2", mypost2)
+
 	http.ListenAndServe(":3000", nil)
 }
