@@ -2,8 +2,8 @@
 
 This repo contains example of
 ```
-creating GET with query, params,
-creating POST apis using httpServer
+creating GET api with query, param
+creating POST api using httpServer
 manipulating json body using struct
 calling external /third party apis using httpclient
 ```
@@ -11,5 +11,7 @@ calling external /third party apis using httpclient
 # To run 
 go run server.go
 
-# To do with gin framework 
+```
+To do with gin framework 
 https://gin-gonic.com/docs/quickstart/
+```
