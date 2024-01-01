@@ -13,7 +13,7 @@ calling external /third party apis using httpclient
 go run server.go
 ```
 
-```
+
 To do with gin framework 
+
 https://gin-gonic.com/docs/quickstart/
-```
